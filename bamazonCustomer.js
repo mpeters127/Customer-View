@@ -13,4 +13,4 @@ let connection = mysql.createConnection({
 
 connection.connect(function(error) {
   if (error) throw error;
-})
+});
