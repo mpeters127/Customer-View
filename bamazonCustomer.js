@@ -1,16 +1,18 @@
 let mysql = require("mysql");
 
 let connection = mysql.createConnection({
-  host: "localhost",
+  host: "localHost",
 
-  port: 6969,
+  port: 3306,
 
-  user: "sozeb",
+  user: "root",
 
-  password: "money",
+  password: "14spaceman69",
+  
   database: "bamazonDB"
 });
 
 connection.connect(function(error) {
   if (error) throw error;
+  console.log("connected as ID " + connection.threadId);
 });
