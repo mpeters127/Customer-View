@@ -8,11 +8,11 @@ let connection = mysql.createConnection({
   user: "root",
 
   password: "14spaceman69",
-  
+
   database: "bamazonDB"
 });
 
-connection.connect(function(error) {
+connection.connect(function (error) {
   if (error) throw error;
   console.log("connected as ID " + connection.threadId);
 });
