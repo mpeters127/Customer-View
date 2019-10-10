@@ -1,4 +1,5 @@
 let mysql = require("mysql");
+let inquirer = require("inquirer");
 
 let connection = mysql.createConnection({
   host: "localHost",
@@ -22,10 +23,20 @@ function afterConnection (){
   connection.query('SELECT * FROM inventory', function(err, res){
     if (err) throw (err);
     console.log(res);
+    productSearch();
   })
 };
 
 //prompt to ask for ID
+function productSearch(){
+  inquirer
+    .prompt({
+      name: "product id",
+      type: "number",
+      message: "What is the Item ID of the product you are looking for?"
+    })
+}
+
 
 //prompt for how many units
 
