@@ -22,6 +22,16 @@ function afterConnection (){
   connection.query('SELECT * FROM inventory', function(err, res){
     if (err) throw (err);
     console.log(res);
-    connection.end()
   })
-}
+};
+
+//prompt to ask for ID
+
+//prompt for how many units
+
+//check if there is enough in stock
+  //insufficient alert 
+        //or
+  //fulfill customer order
+    //update inventory count
+    //show cost of purchase
