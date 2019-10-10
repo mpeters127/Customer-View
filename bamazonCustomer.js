@@ -27,18 +27,23 @@ function afterConnection (){
   })
 };
 
-//prompt to ask for ID
+//prompt to ask for desired product info
 function productSearch(){
   inquirer
-    .prompt({
+    .prompt([
+      
+      {//askes for ID
       name: "product id",
       type: "number",
       message: "What is the Item ID of the product you are looking for?"
-    })
+    },
+    {//asks for purchase quantity 
+      name: "quantity",
+      type: "number",
+      message: "How many would you like to purchase?"
+    }
+  ])
 }
-
-
-//prompt for how many units
 
 //check if there is enough in stock
   //insufficient alert 
