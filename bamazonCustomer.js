@@ -16,11 +16,11 @@ let connection = mysql.createConnection({
 connection.connect(function (error) {
   if (error) throw error;
   console.log("connected as ID " + connection.threadId);
-  afterConnection();
+  displayInventory();
 });
 
-function afterConnection (){
-  connection.query('SELECT * FROM inventory', function(err, res){
+function displayInventory() {
+  connection.query('SELECT * FROM inventory', function (err, res) {
     if (err) throw (err);
     console.log(res);
     productSearch();
@@ -28,26 +28,55 @@ function afterConnection (){
 };
 
 //prompt to ask for desired product info
-function productSearch(){
+function productSearch() {
   inquirer
-    .prompt([
-      
-      {//askes for ID
-      name: "product id",
-      type: "number",
-      message: "What is the Item ID of the product you are looking for?"
-    },
-    {//asks for purchase quantity 
-      name: "quantity",
-      type: "number",
-      message: "How many would you like to purchase?"
-    }
-  ])
-}
+    .prompt(
 
-//check if there is enough in stock
-  //insufficient alert 
-        //or
-  //fulfill customer order
-    //update inventory count
-    //show cost of purchase
+      {//askes for ID
+        name: "product",
+        type: "number",
+        message: "What is the Item ID of the product you are looking for?",
+        validate: function (value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
+      }
+
+    )
+    .then(function (productChoice) {
+      let selectedItem = productChoice.product;
+      connection.query(' SELECT * FROM inventory WHERE item_id= ? ', selectedItem, function (err, res) {
+        if (err) throw err;
+        if (res.length === 0) {
+          console.log("Product DNE");
+          productSearch()
+        }
+        else {
+          inquirer
+            .prompt({
+              // {//asks for purchase quantity 
+              name: "quantity",
+              type: "number",
+              message: "How many would you like to purchase?",
+              validate: function (value) {
+                if (isNaN(value) === false) {
+                  return true;
+                }
+                return false
+              }
+            },
+            console.log(res))
+
+
+          //check if there is enough in stock
+          //insufficient alert 
+          //or
+          //fulfill customer order
+          //update inventory count
+          //show cost of purchase
+        }
+      })
+    })
+}
