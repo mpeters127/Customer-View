@@ -45,8 +45,6 @@ function productSearch(){
   ])
 }
 
-
-
 //check if there is enough in stock
   //insufficient alert 
         //or
