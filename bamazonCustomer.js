@@ -59,15 +59,22 @@ function productSearch() {
               // {//asks for purchase quantity 
               name: "quantity",
               type: "number",
-              message: "How many would you like to purchase?",
-              validate: function (value) {
-                if (isNaN(value) === false) {
-                  return true;
+              message: "How many would you like to purchase?"
+            })
+            .then(function (quantityChoice){
+              let quantity = quantityChoice.quantity;
+                if (quantity > res[0].stock_quantity) {
+                  console.log("------------------------------------------------------------------------------------------------------------------------");
+                  console.log("Sorry, we only have " + res[0].stock_quantity + " on hand. Please reselect your item at a lower quantity.");
+                  console.log("");
+                  productSearch();
                 }
-                return false
-              }
-            },
-            console.log(res))
+                else {
+                  console.log("------------------------------------------------------------------------------------------------------------------------");
+                  console.log("You have selected " +  quantity + " " + res[0].product_name + "(s) for a price of $" + res[0].price + " each.");
+                  console.log("Your total comes to $" +  quantity*res[0].price);
+                }
+              })
 
 
           //check if there is enough in stock
