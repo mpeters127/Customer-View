@@ -2,13 +2,13 @@ let mysql = require("mysql");
 let inquirer = require("inquirer");
 
 let connection = mysql.createConnection({
-  host: "localHost",
+  host: "",
 
-  port: 3306,
+  port: "",
 
-  user: "root",
+  user: "",
 
-  password: "14spaceman69",
+  password: "",
 
   database: "bamazonDB"
 });
@@ -50,7 +50,9 @@ function productSearch() {
       connection.query(' SELECT * FROM inventory WHERE item_id= ? ', selectedItem, function (err, res) {
         if (err) throw err;
         if (res.length === 0) {
-          console.log("Product DNE");
+          console.log("------------------------------------------------------------------------------------------------------------------------");
+          console.log("Product does not exist. Please review our inventory and select again.");
+          console.log("");
           productSearch()
         }
         else {
