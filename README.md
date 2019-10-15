@@ -1,4 +1,4 @@
 # Customer-View
 
-![Alt text](images\inventory_display.png?raw=true "inventory")
-![Alt text](images\prompts_and_functions.png?raw=true "prompts and functions")
+![Alt text](https://github.com/mpeters127/Customer-View/blob/master/images/inventory_display.png "inventory")
+![Alt text](https://github.com/mpeters127/Customer-View/blob/master/images/prompts_and_functions.png "prompts and functions")
